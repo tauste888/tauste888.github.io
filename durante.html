@@ -15,7 +15,7 @@
             </a>
         </li>
         <li class="navigation-links">
-            <a href="Home.html">Home</a>
+            <a href="index.html">Home</a>
             <a href="Prima.html">Prima</a>
             <a href="durante.html">Durante</a>
             <a href="dopo.html">Dopo</a>
@@ -43,7 +43,19 @@
         <div class="image-description">FOTO</div>
         <img src="img/sfondoDURANTE.jpeg" alt="Descrizione immagine">
       </div>
+
+
+      <div class="opacity-slider-container">
+        <div class="opacity-image-wrapper">
+          <img src="img/primasatellite.jpg" alt="Immagine base" class="opacity-image base">
+          <img src="img/dopoSatellite.jpg" alt="Immagine sopra" class="opacity-image overlay" id="opacityOverlay">
+        </div>
+        <input type="range" min="0" max="100" value="100" class="opacity-slider" oninput="adjustOpacity(this.value)">
+      </div>
+
     
+
+      
 
     <footer>
         <div class="footer-content">
@@ -52,7 +64,17 @@
         </div>
     </footer>
 
+
+    <script>
+        function adjustOpacity(value) {
+          const overlay = document.getElementById('opacityOverlay');
+          overlay.style.opacity = value / 100;
+        }
+      </script>
+
+
     
+      
     
 </body>
 </html>
