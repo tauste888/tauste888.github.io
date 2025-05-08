@@ -570,9 +570,31 @@ button2:hover {
     top: 0;
     bottom: 0;
     width: 3px;
-    background-color: #ffffffaa;
+    background-color: #ff0000;
     z-index: 3;
-    pointer-events: none;
     left: 50%;
-    transition: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+  }
+  
+  .slider-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 18px;
+    font-family: sans-serif;
+    color: #fff;
+    background: #ff0000;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+    pointer-events: none;
+    box-shadow: 0 0 5px #00000088;
   }
