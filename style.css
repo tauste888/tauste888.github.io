@@ -531,34 +531,48 @@ button2:hover {
 
 
 
+
+
 .opacity-slider-container {
     width: 80%;
     max-width: 900px;
-    margin: 160px auto 80px auto;
-    position: relative;
-    text-align: center;
+    margin: 100px auto;
   }
-  
+
   .opacity-image-wrapper {
     position: relative;
     width: 100%;
+    overflow: hidden;
+    border-radius: 10px;
+    touch-action: none;
   }
-  
+
   .opacity-image {
     width: 100%;
-    height: auto;
     display: block;
     border-radius: 10px;
+    user-select: none;
+    pointer-events: none;
   }
-  
+
   .opacity-image.overlay {
     position: absolute;
     top: 0;
     left: 0;
-    transition: opacity 0.3s ease;
-  }
-  
-  .opacity-slider {
+    height: 100%;
     width: 100%;
-    margin-top: 20px;
+    clip-path: inset(0 50% 0 0); /* inizialmente metà visibile */
+    z-index: 2;
+  }
+
+  .slider-divider {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background-color: #ffffffaa;
+    z-index: 3;
+    pointer-events: none;
+    left: 50%;
+    transition: none;
   }

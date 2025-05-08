@@ -45,14 +45,15 @@
       </div>
 
 
+
+
       <div class="opacity-slider-container">
-        <div class="opacity-image-wrapper">
+        <div class="opacity-image-wrapper" id="imageWrapper">
           <img src="img/primasatellite.jpg" alt="Immagine base" class="opacity-image base">
           <img src="img/dopoSatellite.jpg" alt="Immagine sopra" class="opacity-image overlay" id="opacityOverlay">
+          <div class="slider-divider" id="sliderDivider"></div>
         </div>
-        <input type="range" min="0" max="100" value="100" class="opacity-slider" oninput="adjustOpacity(this.value)">
       </div>
-
     
 
       
@@ -65,13 +66,52 @@
     </footer>
 
 
-    <script>
-        function adjustOpacity(value) {
-          const overlay = document.getElementById('opacityOverlay');
-          overlay.style.opacity = value / 100;
-        }
-      </script>
+    
 
+
+    <script>
+        const overlay = document.getElementById('opacityOverlay');
+        const divider = document.getElementById('sliderDivider');
+        const wrapper = document.getElementById('imageWrapper');
+      
+        let isDragging = false;
+      
+        function updatePosition(x) {
+          const rect = wrapper.getBoundingClientRect();
+          let offset = x - rect.left;
+          offset = Math.max(0, Math.min(offset, rect.width)); // limita ai bordi
+          const percent = offset / rect.width;
+          overlay.style.clipPath = `inset(0 ${100 - percent * 100}% 0 0)`;
+          divider.style.left = `${percent * 100}%`;
+        }
+      
+        wrapper.addEventListener('mousedown', (e) => {
+          isDragging = true;
+          updatePosition(e.clientX);
+        });
+      
+        window.addEventListener('mousemove', (e) => {
+          if (isDragging) updatePosition(e.clientX);
+        });
+      
+        window.addEventListener('mouseup', () => {
+          isDragging = false;
+        });
+      
+        // Per dispositivi touch
+        wrapper.addEventListener('touchstart', (e) => {
+          isDragging = true;
+          updatePosition(e.touches[0].clientX);
+        });
+      
+        window.addEventListener('touchmove', (e) => {
+          if (isDragging) updatePosition(e.touches[0].clientX);
+        });
+      
+        window.addEventListener('touchend', () => {
+          isDragging = false;
+        });
+      </script>
 
     
       
